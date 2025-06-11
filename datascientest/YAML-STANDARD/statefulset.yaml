@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  serviceName: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: floki
+      containers:
+        - name: postgres
+          image: postgres:12.0-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-storage
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-rootpass
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-rootpass
+                  key: POSTGRES_USER
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: myconfigmap
+                  key: POSTGRES_DB
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: local-path
+        resources:
+          requests:
+            storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  ports:
+  - port: 5432
+    name: postgres
+  clusterIP: None
+  selector:
+    app: postgres
