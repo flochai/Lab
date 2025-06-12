@@ -58,7 +58,11 @@ It's where I test different tools, technologies, and deployments — everything 
 - Expand Kubernetes deployment automation (Helm, Kustomize)
 - Build full CI/CD pipelines for my projects
 
+<br>
+
 ---
+
+<br>
 
 ## ⚠️ Disclaimer
 
