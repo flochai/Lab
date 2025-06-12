@@ -68,3 +68,59 @@ It's where I test different tools, technologies, and deployments — everything 
 
 This repository is for personal learning.  
 Any credentials, secrets or keys included are for test purposes only.
+
+<br>
+<br>
+<br>
+
+# Projets & Expérimentations DevOps
+
+Ce repository regroupe tous mes projets DevOps, expérimentations et laboratoires d’apprentissage.  
+C’est ici que je teste différents outils, technologies et déploiements — de Kubernetes à Terraform en passant par les services AWS.  
+**Note :** Ce repo contient tous mes tests, à l’exception de mon homelab séparé.
+
+---
+
+## Mes objectifs avec ce repository
+
+- Pratique DevOps concrète sur différentes technologies
+- Acquérir de l’expérience en troubleshooting réel
+- Expérimenter des déploiements multi-cloud et multi-architectures
+- Apprendre les outils cloud-native : Kubernetes, Docker, Ansible, GitOps, AWS, Ingress controllers, etc.
+
+---
+
+## Contenu actuel
+
+### Projets Kubernetes
+
+- **Déploiement FastAPI**  
+  Application FastAPI déployée sur Kubernetes :
+  - StatefulSet PostgreSQL
+  - Ingress, Secrets, ConfigMaps
+  - Builds Docker multi-architecture
+
+- **Laboratoire Kubernetes Fundamentals (Kubecraft - Mealie Deployment)**  
+  Déploiement de l’application Mealie avec :
+  - Volumes persistants
+  - Ingress + DNS
+  - Exercices de scaling et troubleshooting
+
+### Cloud / CI/CD / Autres projets
+
+- *(D’autres projets seront ajoutés ici au fur et à mesure)*
+
+---
+
+## Prochaines étapes
+
+- Mise en place de Cloudflare Tunnel pour exposer mes services locaux de façon sécurisée
+- Automatisation avancée des déploiements Kubernetes (Helm, Kustomize)
+- Construction de pipelines CI/CD pour mes projets
+
+---
+
+## ⚠️ Disclaimer
+
+Ce repository est à usage personnel pour l’apprentissage.  
+Les identifiants, secrets ou clés présents sont uniquement destinés à des tests.
