@@ -1,0 +1,35 @@
+2025-06-12 06:08:11.152 UTC [1] LOG:  starting PostgreSQL 12.0 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 8.3.0) 8.3.0, 64-bit
+2025-06-12 06:08:11.152 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2025-06-12 06:08:11.152 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2025-06-12 06:08:11.362 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2025-06-12 06:08:11.995 UTC [19] LOG:  database system was shut down at 2025-06-12 06:01:46 UTC
+2025-06-12 06:08:12.720 UTC [1] LOG:  database system is ready to accept connections
+2025-06-12 06:48:00.845 UTC [69] ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+2025-06-12 06:48:00.845 UTC [69] DETAIL:  Key (typname, typnamespace)=(users_id_seq, 2200) already exists.
+2025-06-12 06:48:00.845 UTC [69] STATEMENT:  
+    CREATE TABLE users (
+        id SERIAL NOT NULL, 
+        name VARCHAR(255), 
+        email VARCHAR(255), 
+        password VARCHAR(255), 
+        PRIMARY KEY (id)
+    )
+    
+    
+2025-06-12 06:48:00.846 UTC [68] ERROR:  duplicate key value violates unique constraint "pg_type_typname_nsp_index"
+2025-06-12 06:48:00.846 UTC [68] DETAIL:  Key (typname, typnamespace)=(users_id_seq, 2200) already exists.
+2025-06-12 06:48:00.846 UTC [68] STATEMENT:  
+    CREATE TABLE users (
+        id SERIAL NOT NULL, 
+        name VARCHAR(255), 
+        email VARCHAR(255), 
+        password VARCHAR(255), 
+        PRIMARY KEY (id)
+    )
+    
+    
+2025-06-12 06:58:29.585 UTC [66] ERROR:  invalid input syntax for type integer: "counts" at character 88
+2025-06-12 06:58:29.585 UTC [66] STATEMENT:  SELECT users.id, users.name, users.email, users.password 
+    FROM users 
+    WHERE users.id = 'counts'
+

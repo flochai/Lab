@@ -1,0 +1,77 @@
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:40850 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40850 - "GET /favicon.ico HTTP/1.1" 405 Method Not Allowed
+INFO:     127.0.0.1:40850 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40850 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40850 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60090 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57566 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33950 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33950 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:33958 - "GET /users HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41446 - "GET /users/counts HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.8/site-packages/uvicorn/protocols/http/h11_impl.py", line 408, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/usr/local/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 84, in __call__
+    return await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.8/site-packages/fastapi/applications.py", line 199, in __call__
+    await super().__call__(scope, receive, send)
+  File "/usr/local/lib/python3.8/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/usr/local/lib/python3.8/site-packages/starlette/middleware/errors.py", line 181, in __call__
+    raise exc from None
+  File "/usr/local/lib/python3.8/site-packages/starlette/middleware/errors.py", line 159, in __call__
+    await self.app(scope, receive, _send)
+  File "/usr/local/lib/python3.8/site-packages/starlette/exceptions.py", line 82, in __call__
+    raise exc from None
+  File "/usr/local/lib/python3.8/site-packages/starlette/exceptions.py", line 71, in __call__
+    await self.app(scope, receive, sender)
+  File "/usr/local/lib/python3.8/site-packages/starlette/routing.py", line 580, in __call__
+    await route.handle(scope, receive, send)
+  File "/usr/local/lib/python3.8/site-packages/starlette/routing.py", line 241, in handle
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.8/site-packages/starlette/routing.py", line 52, in app
+    response = await func(request)
+  File "/usr/local/lib/python3.8/site-packages/fastapi/routing.py", line 216, in app
+    raw_response = await run_endpoint_function(
+  File "/usr/local/lib/python3.8/site-packages/fastapi/routing.py", line 151, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/usr/local/lib/python3.8/site-packages/starlette/concurrency.py", line 40, in run_in_threadpool
+    return await loop.run_in_executor(None, func, *args)
+  File "/usr/local/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/app/routes/user.py", line 42, in get_user
+    return conn.execute(users.select().where(users.c.id == id)).first()
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1262, in execute
+    return meth(self, multiparams, params, _EMPTY_EXECUTION_OPTS)
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1451, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1813, in _execute_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1994, in _handle_dbapi_exception
+    util.raise_(
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1770, in _execute_context
+    self.dialect.do_execute(
+  File "/usr/local/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 717, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.DataError: (psycopg2.errors.InvalidTextRepresentation) invalid input syntax for type integer: "counts"
+LINE 3: WHERE users.id = 'counts'
+                         ^
+
+[SQL: SELECT users.id, users.name, users.email, users.password 
+FROM users 
+WHERE users.id = %(id_1)s]
+[parameters: {'id_1': 'counts'}]
+(Background on this error at: http://sqlalche.me/e/14/9h9h)
+INFO:     127.0.0.1:41460 - "GET /users/count HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48998 - "GET /users HTTP/1.1" 200 OK
+
