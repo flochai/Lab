@@ -73,6 +73,8 @@ Any credentials, secrets or keys included are for test purposes only.
 <br>
 <br>
 
+🇫🇷🇫🇷🇫🇷
+
 # Projets & Expérimentations DevOps
 
 Ce repository regroupe tous mes projets DevOps, expérimentations et laboratoires d’apprentissage.  
