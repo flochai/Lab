@@ -42,9 +42,8 @@ It's where I test different tools, technologies, and deployments — everything 
 
 <br>
 
-### Cloud / CI/CD / Other Projects
-
-- *(Future projects will be added here)*
+- **Bash Scripts**
+  - Calculator
 
 <br>
 
